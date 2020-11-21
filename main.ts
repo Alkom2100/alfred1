@@ -99,7 +99,7 @@ function make_tilemap (levels: number) {
         tiles.placeOnRandomTile(nemo, sprites.builtin.crowd4)
         nemo.x += 14
     } else {
-        game.over(true, effects.confetti)
+        game.over(true, effects.starField)
     }
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.bonus, function (sprite, otherSprite) {
