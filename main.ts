@@ -2,6 +2,7 @@ namespace SpriteKind {
     export const bonus = SpriteKind.create()
     export const gun = SpriteKind.create()
     export const boss = SpriteKind.create()
+    export const top = SpriteKind.create()
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.boss, function (sprite, otherSprite) {
     game.over(false, effects.melt)
@@ -200,7 +201,7 @@ scene.onOverlapTile(SpriteKind.Player, sprites.castle.rock0, function (sprite, l
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.boss, function (sprite, otherSprite) {
     sprite.destroy(effects.spray, 100)
-    boss_life += 1
+    boss_life += -1
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (sprite.y < otherSprite.top) {
@@ -422,5 +423,10 @@ game.onUpdate(function () {
     }
     if (boss_life <= 0) {
         monster.destroy(effects.warmRadial, 500)
+    }
+    if (monster.top <= 64) {
+        monster.vy = 50
+    } else if (monster.bottom >= 128) {
+        monster.vy = -50
     }
 })
